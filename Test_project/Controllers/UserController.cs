@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Test_project.Models;
 
@@ -22,21 +23,22 @@ namespace Test_project.Controllers
             return View();
         }
 
-        public IActionResult UserList()
+        [HttpGet]
+        public async Task<IActionResult> UserList()
         {
-            var users = dbContext.Users.ToList();
+            var users = await dbContext.Users.ToListAsync();
             return View(users);
         }
 
         [HttpGet]
-        public IActionResult AddUser()
+        public async Task<IActionResult> AddUser()
         {
             ViewBag.States = new SelectList(dbContext.States, "SName", "SName");
             return View();
         }
 
         [HttpPost]
-        public IActionResult AddUser(User user)
+        public async  Task<IActionResult> AddUser(User user)
         {
             return View();
         }
