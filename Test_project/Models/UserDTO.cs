@@ -14,7 +14,7 @@ namespace Test_project.Models
         public required string EmailId { get; set; }
 
         [Required(ErrorMessage = "mobile No. is required")]
-        [RegularExpression(@"^[6-9]\d{9}$", ErrorMessage = "Invalid Mobile Number (10 digits required)")]
+        [RegularExpression(@"^[6-9]\d{9}$", ErrorMessage = "Invalid Mobile Number")]
         public required string MobileNo { get; set; }
 
         [Required(ErrorMessage = "Address is required")]
