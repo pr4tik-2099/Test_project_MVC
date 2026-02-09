@@ -13,7 +13,7 @@ namespace Test_project.Models
         [RegularExpression(@"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", ErrorMessage = "Invalid Email Address.")]
         public required string EmailId { get; set; }
 
-        [Required(ErrorMessage = "mobile No. is required")]
+        [Required(ErrorMessage = "Mobile No. is required")]
         [RegularExpression(@"^[6-9]\d{9}$", ErrorMessage = "Invalid Mobile Number")]
         public required string MobileNo { get; set; }
 
