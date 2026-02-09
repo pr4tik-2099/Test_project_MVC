@@ -21,7 +21,7 @@ public partial class UsersDbContext : DbContext
 
     public virtual DbSet<State> States { get; set; }
 
-    public virtual DbSet<User> Users { get; set; }
+    public virtual DbSet<Users> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("Name=ConnectionStrings:dbcs");
@@ -68,15 +68,11 @@ public partial class UsersDbContext : DbContext
                 .HasColumnName("s_Name");
         });
 
-        modelBuilder.Entity<User>(entity =>
+        modelBuilder.Entity<Users>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__users__3213E83F1F4B7BE8");
+            entity.HasKey(e => e.Id).HasName("PK__users__3213E83F14CA3424");
 
             entity.ToTable("users");
-
-            entity.HasIndex(e => e.MobileNo, "UQ__users__60678903AD1322C5").IsUnique();
-
-            entity.HasIndex(e => e.EmailId, "UQ__users__B79555BE1C905007").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("id");
             entity.Property(e => e.Address)

@@ -1,33 +1,35 @@
-﻿@model Test_project.Models.UserDTO
+﻿@model Test_project.Models.Users;
 
 @{
-    ViewData["Title"] = "AddUser";
+    ViewData["Title"] = "UpdateUser1";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="text-white text-center fw-bold text-decoration-underline link-underline-info">Add User</h1>
+<h1 class="text-white text-center fw-bold text-decoration-underline link-underline-info">Update User</h1>
+
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="AddUser" class="bg-dark text-white">
+    <div class="col-md-4 text-white">
+        <form asp-action="UpdateUser">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input asp-for="Id" readonly type="hidden"/> 
             <div class="form-group">
-                <label class="control-label">Name</label>
+                <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Email</label>
+                <label asp-for="EmailId" class="control-label"></label>
                 <input asp-for="EmailId" class="form-control" />
                 <span asp-validation-for="EmailId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Mobile Number</label>
-                <input asp-for="MobileNo" class="form-control" type="number"/>
+                <label asp-for="MobileNo" class="control-label"></label>
+                <input asp-for="MobileNo" class="form-control" />
                 <span asp-validation-for="MobileNo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Address</label>
+                <label asp-for="Address" class="control-label"></label>
                 <input asp-for="Address" class="form-control" />
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
@@ -51,23 +53,17 @@
             <div class="form-group">
                 <label class="control-label">State</label>
                 <Select asp-for="State" class="form-select" asp-items="ViewBag.States">
-                    <option value="">--Select State--</option>
+                    <option disabled value="">--Select State--</option>
                 </Select>
                 <span asp-validation-for="State" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Hobbies" class="control-label"></label>
-                 <select asp-for="Hobbies" class="form-control selectpicker" multiple id="sub_dropdown">
-                    <option disabled value="">--Select Hobbies--</option>
-                    <option value="Reading">Reading</option>
-                    <option value="Traveling">Traveling</option>
-                    <option value="Cooking">Cooking</option>
-                    <option value="Sports">Sports</option>
-                </select> 
+                <input asp-for="Hobbies" class="form-control" />
                 <span asp-validation-for="Hobbies" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="mt-4 btn btn-primary btn-lg" />
+                <input type="submit" value="Save" class="btn btn-primary mt-3" />
             </div>
         </form>
     </div>
@@ -76,11 +72,4 @@
 <div>
     <a asp-action="UserList">Back to List</a>
 </div>
-@* @section Scripts {
-    <script>
-        $(document).ready(function () {
-            $('#sub_dropdown').multiselect(includeSelectAllOption:true);
-        });
-    </script>
-}
- *@
+

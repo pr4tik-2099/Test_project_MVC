@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Test_project.Models;
 
-public partial class User
+public partial class Users
 {
     [Key]
     public int Id { get; set; }
@@ -27,6 +27,6 @@ public partial class User
     [Required(ErrorMessage = "State is required")]
     public required string State { get; set; }
 
-    [Required(ErrorMessage = "Hobbies is required")]
-    public required string Hobbies { get; set; }
+    [Required(ErrorMessage = "Hobbies are required")]
+    public required string Hobbies { get; set; } = null!;
 }
