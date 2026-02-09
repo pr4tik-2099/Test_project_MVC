@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using Test_project.Models;
 
 namespace Test_project.Controllers
@@ -37,20 +38,35 @@ namespace Test_project.Controllers
             ViewBag.States = new SelectList(dbContext.States, "SName", "SName");
             if (ModelState.IsValid)
             {
-                Users user = new Users
+                var mobile_no_Exist = (from i in dbContext.Users where i.MobileNo == users.MobileNo select i).Count();
+                var Email_Exist = (from i in dbContext.Users where i.EmailId == users.EmailId select i).Count();
+                if (mobile_no_Exist > 0)
                 {
-                    Name = users.Name,
-                    EmailId = users.EmailId,
-                    MobileNo = users.MobileNo,
-                    Address = users.Address,
-                    Gender = users.Gender,
-                    State = users.State,
-                    Hobbies = (string.Join(", ", users.Hobbies)).ToString()
+                    TempData["Message"] = "Mobile Number already Exist";
+                }
+                else if(Email_Exist > 0)
+                {
+                    TempData["Message"] = "Email already Exist";
+                }
+                else
+                {
+                    Users user = new Users
+                    {
+                        Name = users.Name,
+                        EmailId = users.EmailId,
+                        MobileNo = users.MobileNo,
+                        Address = users.Address,
+                        Gender = users.Gender,
+                        State = users.State,
+                        Hobbies = (string.Join(", ", users.Hobbies)).ToString()
 
-                };
-                await dbContext.Users.AddAsync(user);
-                await dbContext.SaveChangesAsync();
-                return RedirectToAction("UserList","User");
+                    };
+                    await dbContext.Users.AddAsync(user);
+                    await dbContext.SaveChangesAsync();
+                    TempData["SuccessMessage"] = "User Added successfully.";
+                    return RedirectToAction("UserList", "User");
+                }
+                    
             }
             return View();
         }
