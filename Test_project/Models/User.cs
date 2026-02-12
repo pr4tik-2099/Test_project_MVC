@@ -10,9 +10,11 @@ public partial class Users
     public int Id { get; set; }
 
     [Required(ErrorMessage = "Name is required")]
+    [MinimumNumericCountAttribute]
     public required string Name { get; set; }
 
     [Required(ErrorMessage = "Email Id is required")]
+    [StrictEmailAttribute]
     public required string EmailId { get; set; }
 
     [Required(ErrorMessage = "mobile No. is required")]

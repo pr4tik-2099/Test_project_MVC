@@ -6,11 +6,14 @@ namespace Test_project.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Name is required")]
+        //[Required(ErrorMessage = "Name is required")]
+        //[MinimumNumericCountAttribute(3, ErrorMessage = "Please include at least 3 digits in your entry.")]
+        [MinimumNumericCountAttribute]
         public required string Name { get; set; }
 
-        [Required(ErrorMessage = "Email Id is required")]
-        [RegularExpression(@"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", ErrorMessage = "Invalid Email Address.")]
+        //[Required(ErrorMessage = "Email Id is required")]
+        [StrictEmailAttribute]
+        //[RegularExpression(@"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", ErrorMessage = "Invalid Email Address.")]
         public required string EmailId { get; set; }
 
         [Required(ErrorMessage = "Mobile No. is required")]
